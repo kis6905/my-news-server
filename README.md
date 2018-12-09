@@ -7,4 +7,4 @@
 JPA를 사용하고자 Webflux는 다음 기회에...
 * Spring Security(+ JWT 인증)
 * Swagger
-* 
+* JPA
