@@ -1,7 +1,5 @@
 package com.leaf.mn.auth;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,7 +22,7 @@ public class BaseSecurityHandler implements AuthenticationSuccessHandler, Authen
 	public void onAuthenticationSuccess(HttpServletRequest request,
 	                                    HttpServletResponse response,
 	                                    Authentication authentication) {
-		UserDetails userDetails = new UserDetailsImpl(authentication.getPrincipal().toString(), new ArrayList<>(authentication.getAuthorities()));
+		UserDetails userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 		response.setHeader(JwtInfo.HEADER_NAME, JwtUtil.createToken(userDetails));
 	}

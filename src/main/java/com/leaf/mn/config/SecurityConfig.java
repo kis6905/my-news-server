@@ -29,6 +29,7 @@ import com.leaf.mn.auth.BaseSecurityHandler;
 import com.leaf.mn.auth.credential.CredentialAuthenticationProvider;
 import com.leaf.mn.auth.credential.filter.CredentialAuthenticationFilter;
 import com.leaf.mn.auth.jwt.JwtAuthenticationProvider;
+import com.leaf.mn.auth.jwt.JwtInfo;
 import com.leaf.mn.auth.jwt.filter.JwtAuthenticationFilter;
 import com.leaf.mn.auth.jwt.mather.SkipPathRequestMatcher;
 
@@ -66,17 +67,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.addFilterBefore(credentialAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 			.addFilterBefore(jwtAuthenticationFilter(), FilterSecurityInterceptor.class)
-			.csrf().disable()
-			.cors().and()
+			.csrf()
+				.disable()
+			.cors()
+				.and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-			.and()
+				.and()
 			.authorizeRequests()
-			.antMatchers(SWAGGER_ENTRY_POINTS).permitAll()
-			.antMatchers(H2_ENTRY_POINTS).permitAll()
-			.antMatchers(TOKEN_ENTRY_POINT).permitAll()
-			.antMatchers(LOGIN_ENTRY_POINT).permitAll()
-			.antMatchers(ERROR_ENTRY_POINT).permitAll()
-			.antMatchers(ROOT_ENTRY_POINT).authenticated();
+				.antMatchers(SWAGGER_ENTRY_POINTS).permitAll()
+				.antMatchers(H2_ENTRY_POINTS).permitAll()
+				.antMatchers(TOKEN_ENTRY_POINT).permitAll()
+				.antMatchers(LOGIN_ENTRY_POINT).permitAll()
+				.antMatchers(ERROR_ENTRY_POINT).permitAll()
+				.antMatchers(ROOT_ENTRY_POINT)
+				.authenticated();
     }
 	
 	@Bean
@@ -85,6 +89,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("*"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setExposedHeaders(Arrays.asList(JwtInfo.HEADER_NAME, "test"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

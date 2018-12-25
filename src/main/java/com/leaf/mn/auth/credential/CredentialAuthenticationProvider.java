@@ -33,10 +33,9 @@ public class CredentialAuthenticationProvider extends AbstractUserDetailsAuthent
 
 		String presentedPassword = authentication.getCredentials().toString();
 
+		log.info("~~ userId = {}", userDetails.getUsername());
 		log.info("~~ userDetailsPassword = {}", userDetails.getPassword());
 		log.info("~~ presentedPassword   = {}", presentedPassword);
-		
-		log.info("@@@@@@@@@@@@@@@@@@@@@@@@ encoded pwd: {}", passwordEncoder.encode(presentedPassword));
 		
 		if (!passwordEncoder.matches(presentedPassword, userDetails.getPassword())) {
 			throw new BadCredentialsException("Bad credentials(Not matched password)");
