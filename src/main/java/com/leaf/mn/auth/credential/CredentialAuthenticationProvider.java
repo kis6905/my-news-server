@@ -25,7 +25,7 @@ public class CredentialAuthenticationProvider extends AbstractUserDetailsAuthent
 	@Override
 	protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
 		
-		log.debug("~~ additionalAuthenticationChecks()");
+		log.info("~~ additionalAuthenticationChecks()");
 		
 		if (authentication.getCredentials() == null) {
 			throw new BadCredentialsException("Bad credentials(Credentials is null)");
@@ -33,10 +33,10 @@ public class CredentialAuthenticationProvider extends AbstractUserDetailsAuthent
 
 		String presentedPassword = authentication.getCredentials().toString();
 
-		log.debug("~~ userDetailsPassword = {}", userDetails.getPassword());
-		log.debug("~~ presentedPassword   = {}", presentedPassword);
+		log.info("~~ userDetailsPassword = {}", userDetails.getPassword());
+		log.info("~~ presentedPassword   = {}", presentedPassword);
 		
-		log.debug("@@@@@@@@@@@@@@@@@@@@@@@@ encoded pwd: {}", passwordEncoder.encode(presentedPassword));
+		log.info("@@@@@@@@@@@@@@@@@@@@@@@@ encoded pwd: {}", passwordEncoder.encode(presentedPassword));
 		
 		if (!passwordEncoder.matches(presentedPassword, userDetails.getPassword())) {
 			throw new BadCredentialsException("Bad credentials(Not matched password)");
@@ -45,7 +45,7 @@ public class CredentialAuthenticationProvider extends AbstractUserDetailsAuthent
 
 	@Override
 	protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
-		log.debug("~~ retrieveUser()");
+		log.info("~~ retrieveUser()");
 		
 		UserDetails loadedUser = userDetailsService.loadUserByUsername(username);
 		if (loadedUser == null) {

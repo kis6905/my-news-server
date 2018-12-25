@@ -33,4 +33,5 @@ public class CommonConfig {
 	public static boolean isEnableJwt() {
 		return (jwtEnable == null || Boolean.valueOf(jwtEnable));
 	}
+	
 }

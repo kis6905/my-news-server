@@ -31,7 +31,7 @@ public class CredentialAuthenticationFilter extends AbstractAuthenticationProces
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException {
 		if (isJson(request)) {
-			log.debug("This request is json");
+			log.info("This request is json");
 			User user = objectMapper.readValue(request.getReader(), User.class);
 			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user.getUserId(), user.getRealPassword());
 			return getAuthenticationManager().authenticate(authentication);

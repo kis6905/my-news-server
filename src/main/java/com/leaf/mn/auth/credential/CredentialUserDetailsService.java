@@ -22,14 +22,14 @@ public class CredentialUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String userId) {
-		log.debug("~~ loadUserByUsername() [userId = {}]", userId);
+		log.info("~~ loadUserByUsername() [userId = {}]", userId);
 		User user = userRepository.findByUserId(userId);
 		
 		if (user == null) {
-			log.debug("~~ user is null");
+			log.info("~~ user is null");
 			throw new UsernameNotFoundException("Not found user, " + userId);
 		}
-		log.debug("~~ user = {}", user.toString());
+		log.info("~~ user = {}", user.toString());
 		return new UserDetailsImpl(user, AuthorityUtils.createAuthorityList("ROLE_USER"));
 	}
 }

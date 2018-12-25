@@ -37,6 +37,12 @@
 			<scope>runtime</scope>
 		</dependency>
 		
+		<!-- mysql -->
+		<dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+		
 		<!-- lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -45,18 +51,18 @@
 		</dependency>
 		
 	    <!-- swagger -->
-	    <dependency>
-	      <groupId>io.springfox</groupId>
-	      <artifactId>springfox-swagger-ui</artifactId>
-	      <version>${swagger.version}</version>
-	      <scope>compile</scope>
-	    </dependency>
-	    <dependency>
-	      <groupId>io.springfox</groupId>
-	      <artifactId>springfox-swagger2</artifactId>
-	      <version>${swagger.version}</version>
-	      <scope>compile</scope>
-	    </dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+			<scope>compile</scope>
+		</dependency>
 	    
 	    <!-- security -->
 	    <dependency>

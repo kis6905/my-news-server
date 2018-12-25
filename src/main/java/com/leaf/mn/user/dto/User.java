@@ -31,24 +31,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity(name = "User")
-@Table(name = "user")
+@Table(name = "mn_user")
 @JsonIgnoreProperties(value = { "realPassword" })
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(nullable = false)
+	@Column(name = "user_id", nullable = false)
 	private String userId;
-	@Column
+	@Column(name = "password")
 	private String password;
-	@Column
-	private String name;
-	@Column
-	private String deviceUuid;
-	@Column
+	@Column(name = "nickname")
+	private String nickname;
+	@Column(name = "push_token")
 	private String pushToken;
-	@Column
-	private String pushReceivingYn;
+	@Column(name = "push_yn")
+	private String pushYn;
 	
 	public String getPassword() {
 		return "";
